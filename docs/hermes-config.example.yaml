@@ -1,0 +1,40 @@
+# Example Hermes config (~/.hermes/config.yaml).
+# Any OpenAI-compatible endpoint works. Two options are shown below;
+# keep the one you use.
+
+model:
+  default: local_model
+  provider: local
+  api_mode: openai
+  context_length: 65536
+  max_tokens: 16384
+
+providers:
+  # Option A: LM Studio serving a Gemma model locally
+  local:
+    api_mode: openai
+    base_url: http://localhost:1234/v1
+    key_env: LLM_API_KEY
+    default_model: local_model
+    models: local_model   # replace with the model id shown in LM Studio
+
+  # Option B: a hosted OpenAI-compatible gateway (e.g. LiteLLM)
+  # gateway:
+  #   api_mode: openai
+  #   base_url: https://<your-gateway>/v1
+  #   key_env: LLM_API_KEY
+  #   default_model: <model-id>
+  #   models: <model-id>
+
+display:
+  streaming: false
+
+tools:
+  terminal:
+    enabled: true
+
+# Let Hermes load skills straight from this repo.
+# Replace with the absolute path of your local clone.
+skills:
+  external_dirs:
+    - <PATH_TO_REPO>/skills

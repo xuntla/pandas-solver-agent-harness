@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+
+# Secrets — never commit real keys or tokens
+.env
+.env.*
+!.env.example
+.hermes/
+
+# Agent run outputs
+aiase_result.json
+dev_run_results/
+verify_report.json
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

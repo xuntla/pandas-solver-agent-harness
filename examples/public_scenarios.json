@@ -1,0 +1,67 @@
+[
+  {
+    "task_id": "pd_public_001",
+    "question": "What is the average salary of employees in CS?",
+    "columns": ["name", "department", "salary"],
+    "rows": [["Alice", "CS", 70000], ["Bob", "EE", 65000], ["Carol", "CS", 80000]],
+    "answer_type": "number",
+    "expected": 75000.0,
+    "reference_query": "df[df[\"department\"] == \"CS\"][\"salary\"].mean()"
+  },
+  {
+    "task_id": "pd_public_002",
+    "question": "What is the total sales amount for each region?",
+    "columns": ["region", "sales"],
+    "rows": [["North", 100], ["South", 250], ["North", 200]],
+    "answer_type": "dict",
+    "expected": {"North": 300, "South": 250},
+    "reference_query": "df.groupby(\"region\")[\"sales\"].sum().to_dict()"
+  },
+  {
+    "task_id": "pd_public_003",
+    "question": "Which two products have the highest revenue?",
+    "columns": ["product", "revenue"],
+    "rows": [["Laptop", 5000], ["Mouse", 300], ["Phone", 4000], ["Keyboard", 800]],
+    "answer_type": "list",
+    "expected": ["Laptop", "Phone"],
+    "reference_query": "df.sort_values(\"revenue\", ascending=False)[\"product\"].head(2).tolist()"
+  },
+  {
+    "task_id": "pd_public_004",
+    "question": "How many employees are in each department?",
+    "columns": ["name", "department"],
+    "rows": [["Alice", "CS"], ["Bob", "EE"], ["Carol", "CS"], ["Dave", "Math"]],
+    "answer_type": "dict",
+    "expected": {"CS": 2, "EE": 1, "Math": 1},
+    "reference_query": "df[\"department\"].value_counts().to_dict()"
+  },
+  {
+    "task_id": "pd_public_005",
+    "question": "How many unique customers bought books?",
+    "columns": ["customer", "category", "amount"],
+    "rows": [["Ann", "Books", 120], ["Ben", "Games", 300], ["Ann", "Books", 80], ["Cara", "Books", 200]],
+    "answer_type": "number",
+    "expected": 2,
+    "reference_query": "df[df[\"category\"] == \"Books\"][\"customer\"].nunique()"
+  },
+  {
+    "task_id": "neg_semantic_wrong",
+    "note": "Valid pandas, wrong meaning: forgets the CS filter. Validator passes, evaluator must fail.",
+    "question": "What is the average salary of employees in CS?",
+    "columns": ["name", "department", "salary"],
+    "rows": [["Alice", "CS", 70000], ["Bob", "EE", 65000], ["Carol", "CS", 80000]],
+    "answer_type": "number",
+    "expected": 75000.0,
+    "reference_query": "df[\"salary\"].mean()"
+  },
+  {
+    "task_id": "neg_unsafe",
+    "note": "Forbidden method + lambda. Validator must reject it before execution.",
+    "question": "Double every salary.",
+    "columns": ["name", "salary"],
+    "rows": [["Alice", 70000], ["Bob", 65000]],
+    "answer_type": "list",
+    "expected": [140000, 130000],
+    "reference_query": "df[\"salary\"].apply(lambda x: x * 2).tolist()"
+  }
+]
