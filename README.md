@@ -2,7 +2,7 @@
 
 > 讓本地 LLM Agent 把「表格 + 自然語言問題」轉成一行安全的 pandas 查詢，並用 deterministic validation 與自動評估驗證答案正確性。
 
-> 📚 本專案原為 **TAICA AIASE 2026 課程期末專題（Open Track）** 的作業，課後整理為個人作品集。
+> 📚 本專案原為 **TAICA AIASE 2026 課程期末專題（Open Track）** 的作業，課後整理為個人作品集。  
 > 作業說明：[TAICA AIASE 2026 Final Project — Open Track](https://ktchuang.github.io/TAICA_AIASE2026/homeworks/TAICA2026_FinalProject.html#2-4-open-track-%E5%BF%85%E5%81%9A-40)
 
 ---
